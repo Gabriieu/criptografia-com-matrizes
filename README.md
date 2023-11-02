@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# CryptoMatrix - Criptografia de Strings com Matrizes em React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma implementação prática da criptografia de strings com o uso de matrizes, desenvolvida como parte de um trabalho acadêmico para a disciplina de Álgebra Linear e Geometria Analítica. A aplicação utiliza a linguagem de programação TypeScript e demonstra como os conceitos da álgebra linear podem ser aplicados na segurança da informação.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- Criptografe mensagens com matrizes.
+- Interface de usuário amigável.
+- Demonstração interativa para fins didáticos.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Instalação
 
-- Configure the top-level `parserOptions` property like this:
+Certifique-se de ter [Node.js](https://nodejs.org/) instalado em seu sistema. Para instalar e executar o projeto, siga estas etapas:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. Clone este repositório
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navegue para a pasta do projeto:
+   `cd crypto-matrix`
+
+3. Instale as dependências:
+   `npm install`
+
+4. Execute a aplicação:
+   `npm run dev`
+
+5. Abra um navegador da web e acesse http://localhost:5173 para usar o aplicativo.
