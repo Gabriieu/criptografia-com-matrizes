@@ -14,7 +14,7 @@ interface iMainContext {
   wordMatrix: number[][];
   cryptedWord: string[][];
   finalWord: string | undefined;
-  list: [];
+  list: any[]
 }
 
 export const MainContext = createContext({} as iMainContext);
@@ -25,7 +25,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
   const [cryptedWord, setCryptedWord] = useState<string[][]>([]);
   const [finalWord, setFinalWord] = useState<string>();
 
-  const list = [
+  const list: any[] = [
     { A: 1 },
     { B: 2 },
     { C: 3 },
@@ -78,50 +78,51 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { x: 50 },
     { y: 51 },
     { z: 52 },
-    { 1: 53 },
-    { 2: 54 },
-    { 3: 55 },
-    { 4: 56 },
-    { 5: 57 },
-    { 6: 58 },
-    { 7: 59 },
-    { 8: 60 },
-    { 9: 61 },
-    { "?": 62 },
-    { ";": 63 },
-    { ">": 64 },
-    { "<": 65 },
-    { "&": 66 },
-    { "%": 67 },
-    { $: 68 },
-    { "#": 69 },
-    { "@": 70 },
-    { "!": 71 },
-    { "*": 72 },
-    { "^": 73 },
-    { "~": 74 },
-    { "`": 75 },
-    { ":": 76 },
-    { "'": 77 },
-    { "|": 78 },
-    { "/": 79 },
-    { ":": 80 },
-    { "[": 81 },
-    { "]": 82 },
-    { "{": 83 },
-    { "}": 84 },
-    { "(": 85 },
-    { ")": 86 },
-    { "-": 87 },
-    { _: 88 },
-    { "+": 89 },
-    { "=": 90 },
-    { "`": 91 },
-    { "¬": 92 },
-    { "¦": 93 },
-    { ".": 94 },
-    { ",": 95 },
-    { " ": 96 },
+    {0: 53},
+    { 1: 54 },
+    { 2: 55 },
+    { 3: 56 },
+    { 4: 57 },
+    { 5: 58 },
+    { 6: 59 },
+    { 7: 60 },
+    { 8: 61 },
+    { 9: 62 },
+    { "?": 63 },
+    { ";": 64 },
+    { ">": 65 },
+    { "<": 66 },
+    { "&": 67 },
+    { "%": 68 },
+    { $: 69 },
+    { "#": 70 },
+    { "@": 71 },
+    { "!": 72 },
+    { "*": 73 },
+    { "^": 74 },
+    { "~": 75 },
+    { "`": 76 },
+    { ":": 77 },
+    { "'": 78 },
+    { "|": 79 },
+    { "/": 80 },
+    { ":": 81 },
+    { "[": 82 },
+    { "]": 83 },
+    { "{": 84 },
+    { "}": 85 },
+    { "(": 86 },
+    { ")": 87 },
+    { "-": 88 },
+    { _: 89 },
+    { "+": 90 },
+    { "=": 91 },
+    { "`": 92 },
+    { "¬": 93 },
+    { "¦": 94 },
+    { ".": 95 },
+    { ",": 96 },
+    { " ": 97 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -154,16 +155,14 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       if (charToNumber) {
         result.push(charToNumber[char]);
       } else {
-        // Handle characters that are not in the list, e.g., spaces or special characters.
-        // You can choose to handle them in your own way, for example, skip them or assign a specific value.
         result.push([0, 0]); // Assign [0, 0] to characters not in the list.
       }
     }
 
     const newList: number[][] = [];
 
-    for (let i = 0; i < result.length; i += 2) {
-      const pair = [result[i], result[i + 1]];
+    for (let i = 0; i < result.length; i +=2) {
+      const pair: any = [result[i], result[i + 1]];
       newList.push(pair);
     }
 
@@ -180,7 +179,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
   };
 
   const transformMatrix = (matrix: number[][]): number[][] => {
-    //aqui os números da matriz resultante são tratados para que não sejam superiores a 52 nem inferiores a 0, que é o comprimento da nossa tabela
+    //aqui os números da matriz resultante são tratados para que não sejam superiores a 97, que é o comprimento da nossa tabela
     const listSize = list.length;
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {

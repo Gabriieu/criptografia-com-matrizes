@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const MainStyled = styled.main`
-  width: 100vw;
-  height: 100vh;
+  padding: 1rem;
 
   section {
     display: flex;
@@ -50,7 +49,16 @@ export const MainStyled = styled.main`
       gap: 0.5rem;
 
       input {
-        height: 2rem;
+        width: 428px;
+        padding: 8px;
+      }
+
+      #result{
+        width: 428px;
+        min-height: 200px;
+        border: 1px solid black;
+        resize: none;
+        text-align: center;
       }
     }
 
@@ -90,13 +98,10 @@ export const MainStyled = styled.main`
       margin-bottom: 0.5rem;
     }
 
-    textarea {
-    }
   }
 `;
 
 export const BottomSection = styled.section`
-  width: 100vw;
 
   >h2{
     &:hover{

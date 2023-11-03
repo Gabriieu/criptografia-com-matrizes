@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef } from "react";
+import { useEffect, useContext } from "react";
 import { BottomSection, MainStyled } from "./App";
 import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
@@ -17,8 +17,6 @@ function App() {
     finalWord,
     list,
   } = useContext(MainContext);
-  const userInput = useRef(null);
-  const userOutput = useRef(null);
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
@@ -40,21 +38,41 @@ function App() {
               <div id="key-inputs">
                 <h2>MATRIZ CHAVE</h2>
                 <div>
-                  <input disabled={true} type="number" value={key[0][0]} />
-                  <input disabled={true} type="number" value={key[0][1]} />
+                  <input
+                    name="input"
+                    disabled={true}
+                    type="number"
+                    value={key[0][0]}
+                  />
+                  <input
+                    name="input"
+                    disabled={true}
+                    type="number"
+                    value={key[0][1]}
+                  />
                 </div>
                 <div>
-                  <input disabled={true} type="number" value={key[1][0]} />
-                  <input disabled={true} type="number" value={key[1][1]} />
+                  <input
+                    name="input"
+                    disabled={true}
+                    type="number"
+                    value={key[1][0]}
+                  />
+                  <input
+                    name="input"
+                    disabled={true}
+                    type="number"
+                    value={key[1][1]}
+                  />
                 </div>
               </div>
               <div className="input-word">
-                <h2>PALAVRA PARA CRIPTOGRAFAR</h2>
+                <h2>CRIPTOGRAFAR</h2>
                 <input
+                  name="input"
                   type="text"
                   onChange={(event) => handleInput(event.target.value)}
                   placeholder="Digite a palavra..."
-                  ref={userInput}
                 />
               </div>
               <div id="matrix-result">
@@ -64,6 +82,7 @@ function App() {
                     wordMatrix.map((list) =>
                       list.map((number) => (
                         <input
+                          name="input"
                           type="number"
                           value={number}
                           disabled={true}
@@ -76,27 +95,26 @@ function App() {
               <div className="input-word">
                 <h2>RESULTADO</h2>
                 {cryptedWord.length > 0 ? (
+                  <textarea id="result" readOnly={true} value={finalWord}></textarea>
+                ) : (
                   <input
+                    name="input"
                     type="text"
                     disabled={true}
-                    value={finalWord}
-                    ref={userOutput}
+                    value={"Aguardando..."}
                   />
-                ) : (
-                  <input type="text" disabled={true} value={"Aguardando..."} />
                 )}
               </div>
             </section>
             <BottomSection>
               <h2>TABELA DE REFERÊNCIA</h2>
-                <ul>
-                  {list.map((obj) => (
-                    <CaracterCard obj={obj} key={math.random()} />
-                  ))}
-                </ul>
+              <ul>
+                {list.map((obj) => (
+                  <CaracterCard obj={obj} key={math.random()} />
+                ))}
+              </ul>
             </BottomSection>
           </MainStyled>
-          <footer></footer>
         </>
       )}
     </>
