@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import * as math from "mathjs";
+import { iObject } from "../components/caracter-card/caracter-card.index";
 
 interface iMainProviderProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ interface iMainContext {
   wordMatrix: number[][];
   cryptedWord: string[][];
   finalWord: string | undefined;
+  list: [iObject];
 }
 
 export const MainContext = createContext({} as iMainContext);
@@ -120,6 +122,8 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { "¬": 92 },
     { "¦": 93 },
     { ".": 94 },
+    { ",": 95 },
+    { " ": 96 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -240,6 +244,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
         wordMatrix,
         cryptedWord,
         finalWord,
+        list,
       }}
     >
       {children}

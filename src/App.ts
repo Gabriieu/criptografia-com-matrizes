@@ -76,7 +76,7 @@ export const MainStyled = styled.main`
         input {
           width: 40%;
 
-          &:hover{
+          &:hover {
             cursor: not-allowed;
           }
         }
@@ -90,27 +90,28 @@ export const MainStyled = styled.main`
       margin-bottom: 0.5rem;
     }
 
-    textarea{
+    textarea {
     }
   }
 `;
 
 export const BottomSection = styled.section`
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100vw;
 
-    h2 {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-      }
+  >h2{
+    &:hover{
+      cursor: pointer;
     }
+  }
+  ul {
+    width: 100%;
+    max-width: 428px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid black;
+    padding: 8px;
+
   }
 `;

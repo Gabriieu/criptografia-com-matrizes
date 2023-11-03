@@ -1,10 +1,8 @@
-import { useEffect, useContext, useState, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import { BottomSection, MainStyled } from "./App";
 import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
-import table from "./assets/table.png";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { TbReload } from "react-icons/tb";
+import { CaracterCard } from "./components/caracter-card/caracter-card.index";
 
 function App() {
   const {
@@ -17,30 +15,20 @@ function App() {
     transformMatrix,
     wordToMatrix,
     finalWord,
+    list,
   } = useContext(MainContext);
-  const [displayTable, setDisplayTable] = useState<boolean>(false);
-  const userInput = useRef(null)
-  const userOutput = useRef(null)
-
-  const handleKeyChange = () => {
-    setKey(generateKey());
-  };
+  const userInput = useRef(null);
+  const userOutput = useRef(null);
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
-      cryptResult(transformMatrix(math.multiply(wordToMatrix(text), [[34,37],[45,49]])));
+      cryptResult(transformMatrix(math.multiply(wordToMatrix(text), key)));
     }
   };
 
   useEffect(() => {
     setKey(generateKey());
   }, []);
-
-/*   useEffect(() => {
-    if(userInput.current.value.length < 4){
-      console.log("sim")
-    }
-  },[userInput.current, userOutput]) */
 
   return (
     <>
@@ -59,8 +47,6 @@ function App() {
                   <input disabled={true} type="number" value={key[1][0]} />
                   <input disabled={true} type="number" value={key[1][1]} />
                 </div>
-
-                <TbReload onClick={handleKeyChange} />
               </div>
               <div className="input-word">
                 <h2>PALAVRA PARA CRIPTOGRAFAR</h2>
@@ -90,28 +76,24 @@ function App() {
               <div className="input-word">
                 <h2>RESULTADO</h2>
                 {cryptedWord.length > 0 ? (
-                  <input type="text" disabled={true} value={finalWord} ref={userOutput}/>
+                  <input
+                    type="text"
+                    disabled={true}
+                    value={finalWord}
+                    ref={userOutput}
+                  />
                 ) : (
                   <input type="text" disabled={true} value={"Aguardando..."} />
                 )}
               </div>
             </section>
             <BottomSection>
-              <div>
-                {displayTable ? (
-                  <>
-                    <h2 onClick={() => setDisplayTable(false)}>
-                      ESCONDER TABELA DE REFERÊNCIA
-                      <AiFillEyeInvisible size={24} />
-                    </h2>
-                    <img src={table} alt="" />
-                  </>
-                ) : (
-                  <h2 onClick={() => setDisplayTable(true)}>
-                    MOSTRAR TABELA DE REFERÊNCIA <AiFillEye size={24} />
-                  </h2>
-                )}
-              </div>
+              <h2>TABELA DE REFERÊNCIA</h2>
+                <ul>
+                  {list.map((obj) => (
+                    <CaracterCard obj={obj} key={math.random()} />
+                  ))}
+                </ul>
             </BottomSection>
           </MainStyled>
           <footer></footer>
