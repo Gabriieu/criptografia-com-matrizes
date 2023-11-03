@@ -14,7 +14,7 @@ interface iMainContext {
   wordMatrix: number[][];
   cryptedWord: string[][];
   finalWord: string | undefined;
-  list: any[]
+  list: any[];
 }
 
 export const MainContext = createContext({} as iMainContext);
@@ -78,7 +78,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { x: 50 },
     { y: 51 },
     { z: 52 },
-    {0: 53},
+    { 0: 53 },
     { 1: 54 },
     { 2: 55 },
     { 3: 56 },
@@ -123,6 +123,24 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { ".": 95 },
     { ",": 96 },
     { " ": 97 },
+    { á: 98 },
+    { Á: 99 },
+    { à: 100 },
+    { À: 101 },
+    { â: 102 },
+    { Â: 103 },
+    { é: 104 },
+    { É: 105 },
+    { ê: 106 },
+    { Ê: 107 },
+    { í: 108 },
+    { Í: 109 },
+    { ó: 110 },
+    { Ó: 111 },
+    { ô: 112 },
+    { Ô: 113 },
+    { ú: 114 },
+    { Ú: 115 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -161,7 +179,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
 
     const newList: number[][] = [];
 
-    for (let i = 0; i < result.length; i +=2) {
+    for (let i = 0; i < result.length; i += 2) {
       const pair: any = [result[i], result[i + 1]];
       newList.push(pair);
     }
