@@ -77,7 +77,49 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { w: 49 },
     { x: 50 },
     { y: 51 },
-    { z: 0 },
+    { z: 52 },
+    { 1: 53 },
+    { 2: 54 },
+    { 3: 55 },
+    { 4: 56 },
+    { 5: 57 },
+    { 6: 58 },
+    { 7: 59 },
+    { 8: 60 },
+    { 9: 61 },
+    { "?": 62 },
+    { ";": 63 },
+    { ">": 64 },
+    { "<": 65 },
+    { "&": 66 },
+    { "%": 67 },
+    { $: 68 },
+    { "#": 69 },
+    { "@": 70 },
+    { "!": 71 },
+    { "*": 72 },
+    { "^": 73 },
+    { "~": 74 },
+    { "`": 75 },
+    { ":": 76 },
+    { "'": 77 },
+    { "|": 78 },
+    { "/": 79 },
+    { ":": 80 },
+    { "[": 81 },
+    { "]": 82 },
+    { "{": 83 },
+    { "}": 84 },
+    { "(": 85 },
+    { ")": 86 },
+    { "-": 87 },
+    { _: 88 },
+    { "+": 89 },
+    { "=": 90 },
+    { "`": 91 },
+    { "¬": 92 },
+    { "¦": 93 },
+    { ".": 94 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -104,7 +146,6 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
 
   const wordToMatrix = (word: string): number[][] => {
     const result: number[][] = [];
-
     for (const char of word) {
       const charToNumber: any = list.find((item: any) => item[char]);
 
@@ -116,13 +157,15 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
         result.push([0, 0]); // Assign [0, 0] to characters not in the list.
       }
     }
+
     const newList: number[][] = [];
+
     for (let i = 0; i < result.length; i += 2) {
       const pair = [result[i], result[i + 1]];
       newList.push(pair);
     }
 
-    //se houver undefined como valor é trocado para 0
+    //se houver undefined o valor é trocado para 0
     for (let i = 0; i < newList.length; i++) {
       for (let j = 0; j < newList[i].length; j++) {
         if (newList[i][j] == undefined) {
@@ -130,6 +173,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
         }
       }
     }
+
     return newList;
   };
 
@@ -146,6 +190,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
         }
       }
     }
+
     setWordMatrix(matrix);
     return matrix;
   };
@@ -182,7 +227,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       )
     )
   ); */
-  //console.log(generateKey())
+
   return (
     <MainContext.Provider
       value={{

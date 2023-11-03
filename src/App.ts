@@ -43,13 +43,43 @@ export const MainStyled = styled.main`
       }
     }
 
-    #input-word {
+    .input-word {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
+
       input {
         height: 2rem;
+      }
+    }
+
+    #matrix-result {
+      border: 1px solid gray;
+      padding: 0.5rem;
+      margin: 1rem;
+      max-width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 428px;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+        max-height: 30vh;
+        overflow-y: scroll;
+        input {
+          width: 40%;
+
+          &:hover{
+            cursor: not-allowed;
+          }
+        }
       }
     }
 
@@ -58,6 +88,9 @@ export const MainStyled = styled.main`
       border: 1px solid black;
       border-radius: 8px;
       margin-bottom: 0.5rem;
+    }
+
+    textarea{
     }
   }
 `;
@@ -74,8 +107,9 @@ export const BottomSection = styled.section`
       align-items: center;
       gap: 8px;
 
-      &:hover{
+      &:hover {
         cursor: pointer;
+        transform: scale(1.1);
       }
     }
   }

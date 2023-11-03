@@ -5,10 +5,10 @@ import { MainProvider } from "./provider/main.provider.tsx";
 import { ResetStyle } from "./styles/resetStyles.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ResetStyle/>
+  <>
+    <ResetStyle />
     <MainProvider>
       <App />
     </MainProvider>
-  </React.StrictMode>
+  </>
 );
