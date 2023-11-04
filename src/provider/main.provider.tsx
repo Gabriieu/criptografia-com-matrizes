@@ -263,7 +263,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       setCryptedWord(result);
       transformText(result);
     }
-
+    result[result.length - 1].pop()
     return result;
   };
 
