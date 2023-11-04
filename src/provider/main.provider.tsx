@@ -157,13 +157,15 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     {"§": 124},
     {"ª": 125},
     {"º": 126},
-    {" ": 127}
+    {" ": 127},
+    {"–": 128}
   ];
 
   const transformText = (list: string[][]) => {
     setFinalWord(list.map((innerArray) => innerArray.join("")).join(""));
   };
 
+  
   const generateKey = (): number[][] => {
     let a, b, c, d;
     do {
@@ -179,6 +181,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       [a, b],
       [c, d],
     ];
+    console.log(matrix)
     return matrix;
   };
 

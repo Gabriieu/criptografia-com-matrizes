@@ -1,8 +1,11 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
+import { useEffect, useContext, useState, useRef } from "react";
 import { BottomSection, MainStyled, MiddleSection } from "./App";
 import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
 import { CaracterCard } from "./components/caracter-card/caracter-card.index";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import {TbReload} from "react-icons/tb"
 
 function App() {
   const {
@@ -20,13 +23,16 @@ function App() {
     decryptedWord,
   } = useContext(MainContext);
   const [decryptKey, setDecryptKey] = useState<number[][]>([[], []]);
+  const textValue = useRef<HTMLTextAreaElement | null>(null);
   const decryptValue = useRef<HTMLTextAreaElement | null>(null);
+  const keyMatrixReference = useRef<HTMLInputElement | null>(null)
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
       cryptResult(transformMatrix(math.multiply(wordToMatrix(text), key)));
+    }else{
+      toast.info("A palavra deve ter no mínimo 4 caracteres.")
     }
-    
   };
 
   const handleDecrypt = (text: string) => {
@@ -36,8 +42,10 @@ function App() {
   };
 
   useEffect(() => {
-    setKey(generateKey());
+      setKey(generateKey())
   }, []);
+
+
 
   return (
     <>
@@ -46,6 +54,7 @@ function App() {
           <header></header>
           <MainStyled>
             <section>
+              <h2 className="title">CRIPTOGRAFIA</h2>
               <div id="key-inputs">
                 <h2>MATRIZ CHAVE</h2>
                 <div>
@@ -55,6 +64,7 @@ function App() {
                     disabled={true}
                     type="number"
                     value={key[0][0]}
+                    ref={keyMatrixReference}
                   />
                   <input
                     name="input"
@@ -80,13 +90,14 @@ function App() {
                     value={key[1][1]}
                   />
                 </div>
+                <TbReload onClick={() => setKey(generateKey())} color="blue" size={24}/>
               </div>
               <div className="input-word">
-                <h2>CRIPTOGRAFAR</h2>
+                <button onClick={() => handleInput(textValue.current?.value!)}>Criptografar</button>
                 <textarea
                   className="text-area"
-                  onChange={(event) => handleInput(event.target.value)}
                   placeholder="Digite a palavra..."
+                  ref={textValue}
                 />
               </div>
               <div id="matrix-result">
@@ -127,18 +138,7 @@ function App() {
             <MiddleSection>
               <h2>DESCRIPTOGRAFIA</h2>
               <div id="key-inputs">
-                <h2
-                  onClick={() =>
-                    console.log(
-                      matrixToWord("¬VKob(?Â*cDÃóW4#![{!ébÔV'm", [
-                        [41, 64],
-                        [57, 89],
-                      ])
-                    )
-                  }
-                >
-                  MATRIZ CHAVE
-                </h2>
+                <h2>MATRIZ CHAVE</h2>
                 <div>
                   <input
                     name="input"
@@ -184,7 +184,11 @@ function App() {
                   />
                 </div>
               </div>
-                  <button id="decrypt-btn" onClick={() => handleDecrypt(decryptValue.current?.value!)}>Descriptografar</button>
+              <button
+                onClick={() => handleDecrypt(decryptValue.current?.value!)}
+              >
+                Descriptografar
+              </button>
               <div>
                 <textarea
                   className="text-area"
@@ -210,7 +214,18 @@ function App() {
             </BottomSection>
           </MainStyled>
         </>
-      )}
+      )}<ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
     </>
   );
 }
