@@ -170,10 +170,10 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     let a, b, c, d;
     do {
       // Gerar valores aleatórios para a, b, c e d, evitando 0
-      a = Math.floor(Math.random() * 99) + 1; // De 1 a 99
-      b = Math.floor(Math.random() * 99) + 1; // De 1 a 99
-      c = Math.floor(Math.random() * 99) + 1; // De 1 a 99
-      d = Math.floor(Math.random() * 99) + 1; // De 1 a 99
+      a = Math.floor(Math.random() * 999) + 1; // De 1 a 999
+      b = Math.floor(Math.random() * 999) + 1; // De 1 a 999
+      c = Math.floor(Math.random() * 999) + 1; // De 1 a 999
+      d = Math.floor(Math.random() * 999) + 1; // De 1 a 999
     } while (a * d - b * c !== 1); // Verifique se o determinante é igual a 1
 
     // Crie a matriz 2x2 com os valores calculados

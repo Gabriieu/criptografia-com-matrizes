@@ -35,7 +35,7 @@ function App() {
     if (text.length >= 4) {
       cryptResult(transformMatrix(math.multiply(wordToMatrix(text), key)));
     } else {
-      toast.info("A palavra deve ter no mínimo 4 caracteres.");
+      toast.info("A palavra deve ter no mínimo 4 caracteres");
     }
   };
 
@@ -98,35 +98,19 @@ function App() {
                   size={24}
                 />
               </div>
-              <div className="input-word">
-                <button onClick={() => handleInput(textValue.current?.value!)}>
-                  Criptografar
-                </button>
+            <div className="container-inputs">
+            <div className="input-word">
                 <textarea
                   className="text-area"
                   placeholder="Digite a palavra..."
                   ref={textValue}
                 />
               </div>
-              <div id="matrix-result">
-                <h2>MATRIZ RESULTANTE</h2>
-                <div>
-                  {wordMatrix.length > 0 &&
-                    wordMatrix.map((list) =>
-                      list.map((number) => (
-                        <input
-                          name="input"
-                          type="number"
-                          value={number}
-                          disabled={true}
-                          key={math.random()}
-                        />
-                      ))
-                    )}
-                </div>
-              </div>
+              
+              <button onClick={() => handleInput(textValue.current?.value!)}>
+                  Criptografar
+                </button>
               <div className="input-word">
-                <h2>RESULTADO</h2>
                 {cryptedWord.length > 0 ? (
                   <textarea
                     className="text-area"
@@ -134,17 +118,37 @@ function App() {
                     value={finalWord}
                   ></textarea>
                 ) : (
-                  <input
-                    name="input"
-                    type="text"
-                    disabled={true}
-                    value={"Aguardando..."}
-                  />
+                  <textarea
+                    className="text-area"
+                    readOnly={true}
+                    value="Aguardando..."
+                  ></textarea>
                 )}
               </div>
+            </div>
+                  {
+                    wordMatrix.length > 0 && (              <div id="matrix-result">
+                    <h2>MATRIZ RESULTANTE</h2>
+                    <div>
+                      {wordMatrix.length > 0 &&
+                        wordMatrix.map((list) =>
+                          list.map((number) => (
+                            <input
+                              name="input"
+                              type="number"
+                              value={number}
+                              disabled={true}
+                              key={math.random()}
+                            />
+                          ))
+                        )}
+                    </div>
+                  </div>)
+                  }
+              
             </section>
             <MiddleSection>
-              <h2>DESCRIPTOGRAFIA</h2>
+              <h2 className="title">DESCRIPTOGRAFIA</h2>
               <div id="key-inputs">
                 <h2>MATRIZ CHAVE</h2>
                 <div>
@@ -192,6 +196,15 @@ function App() {
                   />
                 </div>
               </div>
+                    <div className="container-inputs">
+                    <div>
+                <textarea
+                  className="text-area"
+                  placeholder="Digite aqui..."
+                  ref={decryptValue}
+                />
+              </div>
+              
               <button
                 onClick={() => handleDecrypt(decryptValue.current?.value!)}
               >
@@ -200,17 +213,11 @@ function App() {
               <div>
                 <textarea
                   className="text-area"
-                  placeholder="Digite aqui..."
-                  ref={decryptValue}
-                />
-              </div>
-              <div>
-                <textarea
-                  className="text-area"
                   value={decryptedWord}
                   readOnly={true}
                 ></textarea>
               </div>
+                    </div>
             </MiddleSection>
             <BottomSection>
               {displayTable ? (

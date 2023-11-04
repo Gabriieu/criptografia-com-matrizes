@@ -16,7 +16,7 @@ export const MainStyled = styled.main`
     }
   }
 
-  .show-hide{
+  .show-hide {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,6 +27,17 @@ export const MainStyled = styled.main`
     flex-direction: column;
     align-items: center;
 
+    .container-inputs{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @media(min-width: 1024px){
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
     .text-area {
       width: 428px;
       max-width: 90vw;
@@ -85,6 +96,7 @@ export const MainStyled = styled.main`
     }
 
     #matrix-result {
+      height: 150px;
       border: 1px solid gray;
       padding: 0.5rem;
       margin: 1rem;
@@ -119,6 +131,10 @@ export const MainStyled = styled.main`
       border-radius: 8px;
       margin-bottom: 0.5rem;
     }
+  }
+
+  .title{
+    font-size: 24px;
   }
 `;
 
