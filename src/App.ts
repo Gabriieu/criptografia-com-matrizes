@@ -50,11 +50,13 @@ export const MainStyled = styled.main`
 
       input {
         width: 428px;
+        max-width: 90vw;
         padding: 8px;
       }
 
       #result{
         width: 428px;
+        max-width: 90vw;
         min-height: 200px;
         border: 1px solid black;
         resize: none;
@@ -101,6 +103,10 @@ export const MainStyled = styled.main`
   }
 `;
 
+export const MiddleSection = styled.section`
+  margin-top: 3rem;
+  border-top: 2px solid black;
+`
 export const BottomSection = styled.section`
 
   >h2{

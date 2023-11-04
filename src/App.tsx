@@ -1,5 +1,5 @@
-import { useEffect, useContext } from "react";
-import { BottomSection, MainStyled } from "./App";
+import { useEffect, useContext, useState } from "react";
+import { BottomSection, MainStyled, MiddleSection } from "./App";
 import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
 import { CaracterCard } from "./components/caracter-card/caracter-card.index";
@@ -16,7 +16,10 @@ function App() {
     wordToMatrix,
     finalWord,
     list,
+    matrixToWord,
+    toReverseKey,decryptedWord
   } = useContext(MainContext);
+  const [decryptKey, setDecryptKey] = useState<number[][]>([[], []]);
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
@@ -24,9 +27,15 @@ function App() {
     }
   };
 
+  const handleDecrypt = (text: string)=>{
+    if(decryptKey[0].length == 2 && decryptKey[1].length == 2){
+      matrixToWord(text, decryptKey)
+    }
+  }
+
   useEffect(() => {
     setKey(generateKey());
-  }, []);
+  }, [decryptedWord]);
 
   return (
     <>
@@ -95,7 +104,11 @@ function App() {
               <div className="input-word">
                 <h2>RESULTADO</h2>
                 {cryptedWord.length > 0 ? (
-                  <textarea id="result" readOnly={true} value={finalWord}></textarea>
+                  <textarea
+                    id="result"
+                    readOnly={true}
+                    value={finalWord}
+                  ></textarea>
                 ) : (
                   <input
                     name="input"
@@ -106,6 +119,73 @@ function App() {
                 )}
               </div>
             </section>
+            <MiddleSection>
+              <h2>DESCRIPTOGRAFAR</h2>
+              <div id="key-inputs">
+                <h2
+                  onClick={() =>
+                    console.log(
+                      matrixToWord("¬VKob(?Â*cDÃóW4#![{!ébÔV'm", [
+                        [41, 64],
+                        [57, 89],
+                      ])
+                    )
+                  }
+                >
+                  MATRIZ CHAVE
+                </h2>
+                <div>
+                  <input
+                    name="input"
+                    type="number"
+                    onChange={(event) =>
+                      setDecryptKey([
+                        [Number(event.target.value), decryptKey[0][1]],
+                        [decryptKey[1][0], decryptKey[1][1]],
+                      ])
+                    }
+                  />
+                  <input
+                    name="input"
+                    type="number"
+                    onChange={(event) =>
+                      setDecryptKey([
+                        [decryptKey[0][0], Number(event.target.value)],
+                        [decryptKey[1][0], decryptKey[1][1]],
+                      ])
+                    }
+                  />
+                </div>
+                <div>
+                  <input
+                    name="input"
+                    type="number"
+                    onChange={(event) =>
+                      setDecryptKey([
+                        [decryptKey[0][0], decryptKey[0][1]],
+                        [Number(event.target.value), decryptKey[1][1]],
+                      ])
+                    }
+                  />
+                  <input
+                    name="input"
+                    type="number"
+                    onChange={(event) =>
+                      setDecryptKey([
+                        [decryptKey[0][0], decryptKey[0][1]],
+                        [decryptKey[1][0], Number(event.target.value)],
+                      ])
+                    }
+                  />
+                </div>
+              </div>
+              <div>
+                <input type="text" placeholder="Digite aqui..." onChange={(event) => handleDecrypt(event.target.value)}/>
+              </div>
+              <div>
+                <textarea value={decryptedWord} readOnly={true}></textarea>
+              </div>
+            </MiddleSection>
             <BottomSection>
               <h2>TABELA DE REFERÊNCIA</h2>
               <ul>

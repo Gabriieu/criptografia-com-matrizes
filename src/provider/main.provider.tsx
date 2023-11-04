@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import * as math from "mathjs";
 
 interface iMainProviderProps {
   children: React.ReactNode;
@@ -15,6 +16,10 @@ interface iMainContext {
   cryptedWord: string[][];
   finalWord: string | undefined;
   list: any[];
+  reverseKey: number[][];
+  toReverseKey: (key: number[][]) => number[][];
+  matrixToWord: (text: string, key: number[][]) => void;
+  decryptedWord: string
 }
 
 export const MainContext = createContext({} as iMainContext);
@@ -24,6 +29,8 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
   const [wordMatrix, setWordMatrix] = useState<number[][]>([]);
   const [cryptedWord, setCryptedWord] = useState<string[][]>([]);
   const [finalWord, setFinalWord] = useState<string>();
+  const [reverseKey, setReverseKey] = useState<number[][]>([]);
+  const [decryptedWord, setDecryptedWord] = useState<string>("")
 
   const list: any[] = [
     { A: 1 },
@@ -117,30 +124,32 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { _: 89 },
     { "+": 90 },
     { "=": 91 },
-    { "`": 92 },
-    { "¬": 93 },
-    { "¦": 94 },
-    { ".": 95 },
-    { ",": 96 },
-    { " ": 97 },
-    { á: 98 },
-    { Á: 99 },
-    { à: 100 },
-    { À: 101 },
-    { â: 102 },
-    { Â: 103 },
-    { é: 104 },
-    { É: 105 },
-    { ê: 106 },
-    { Ê: 107 },
-    { í: 108 },
-    { Í: 109 },
-    { ó: 110 },
-    { Ó: 111 },
-    { ô: 112 },
-    { Ô: 113 },
-    { ú: 114 },
-    { Ú: 115 },
+    { "¬": 92 },
+    { "¦": 93 },
+    { ".": 94 },
+    { ",": 95 },
+    { " ": 96 },
+    { á: 97 },
+    { Á: 98 },
+    { à: 99 },
+    { À: 100 },
+    { â: 101 },
+    { Â: 102 },
+    { ã: 103 },
+    { Ã: 104 },
+    { é: 105 },
+    { É: 106 },
+    { ê: 107 },
+    { Ê: 108 },
+    { í: 109 },
+    { Í: 110 },
+    { ó: 111 },
+    { Ó: 112 },
+    { ô: 113 },
+    { Ô: 114 },
+    { ú: 115 },
+    { Ú: 116 },
+    { ç: 117 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -173,7 +182,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       if (charToNumber) {
         result.push(charToNumber[char]);
       } else {
-        result.push([0, 0]); // Assign [0, 0] to characters not in the list.
+        result.push([0, 0]);
       }
     }
 
@@ -196,8 +205,11 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return newList;
   };
 
-  const transformMatrix = (matrix: number[][]): number[][] => {
-    //aqui os números da matriz resultante são tratados para que não sejam superiores a 97, que é o comprimento da nossa tabela
+  const transformMatrix = (
+    matrix: number[][],
+    decrypting?: boolean
+  ): number[][] => {
+    //aqui os números da matriz resultante são tratados para que não sejam superiores ao tamanho da lista
     const listSize = list.length;
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
@@ -210,11 +222,17 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       }
     }
 
-    setWordMatrix(matrix);
+    if (!decrypting) {
+      setWordMatrix(matrix);
+    }
+
     return matrix;
   };
 
-  const cryptResult = (matrix: number[][]): string[][] => {
+  const cryptResult = (
+    matrix: number[][],
+    decrypting?: boolean
+  ): string[][] => {
     const result = [];
 
     for (const row of matrix) {
@@ -231,9 +249,70 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       }
       result.push(newRow);
     }
-    setCryptedWord(result);
-    transformText(result);
+    if (!decrypting) {
+      setCryptedWord(result);
+      transformText(result);
+    }
+
     return result;
+  };
+
+  const toReverseKey = (key: number[][]): number[][] => {
+    const newKey: number[][] = [];
+
+    const a = key[1][1];
+    const b = key[0][1] * -1;
+    const c = key[1][0] * -1;
+    const d = key[0][0];
+
+    newKey.push([a, b]);
+    newKey.push([c, d]);
+
+    return newKey;
+  };
+
+  const matrixToWord = (text: string, key: number[][]) => {
+    let matrix: number[][] = [];
+
+    const values = [];
+
+    for (let i = 0; i < text.length; i++) {
+      const letra = text[i];
+      const filteredObjects = list.filter(
+        (obj) => Object.keys(obj)[0] === letra
+      );
+      const letterValues = filteredObjects.map((obj) => obj[letra]);
+
+      values.push(...letterValues);
+    }
+
+    if (values.length % 2 !== 0) {
+      values.push(0);
+    }
+
+    for (let i = 0; i < text.length; i++) {
+      const array = values.splice(0, 2);
+      if (array.length > 1) {
+        matrix.push(array);
+      }
+    }
+
+    const multiplyMatrixResult = math.multiply(matrix, toReverseKey(key));
+    console.log(toReverseKey(key))
+    console.log(multiplyMatrixResult)
+    const letterMatrix: string[][] = cryptResult(
+      transformMatrix(multiplyMatrixResult, true),
+      true
+    );
+    let newString: string = "";
+
+    letterMatrix.forEach((array) => {
+      array.forEach((letter) => {
+        newString += letter;
+      });
+    });
+    setDecryptedWord(newString)
+    return newString;
   };
 
   /*   console.log(
@@ -260,6 +339,9 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
         cryptedWord,
         finalWord,
         list,
+        reverseKey,
+        toReverseKey,
+        matrixToWord,decryptedWord
       }}
     >
       {children}
