@@ -26,6 +26,13 @@ export const MainStyled = styled.main`
       font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     }
 
+    #decrypt-btn{
+      background-color: rgba(1,1,1,.1);
+      padding: 8px;
+      border-radius: 8px;
+      margin: .5rem;
+      color: red;
+    }
     #key-inputs {
       border: 1px solid gray;
       padding: 0.5rem;

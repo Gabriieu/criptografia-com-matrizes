@@ -147,11 +147,17 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { "ú": 114 },
     { "Ú": 115 },
     { "ç": 116 },
-    { "\r": 117 },
-    { "\n": 118 },
-    { "\r\n": 119 },
-    { "\u2029": 120 },
-    {"—": 121}, {"¹": 122}, {"²": 123},{"³":124}, {"£": 125}, {"¢": 126}, {"¬": 127},{"§": 128},{"ª": 129}, {"º": 130}
+    {"—": 117},
+    {"¹": 118},
+    {"²": 119},
+    {"³":120},
+    {"£": 121},
+    {"¢": 122},
+    {"¬": 123},
+    {"§": 124},
+    {"ª": 125},
+    {"º": 126},
+    {" ": 127}
   ];
 
   const transformText = (list: string[][]) => {
@@ -314,17 +320,6 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     setDecryptedWord(newString);
     return newString;
   };
-
-  /*   console.log(
-    cryptResult(
-      transformMatrix(
-        math.multiply(wordToMatrix("BOLA"), [
-          [1, 3],
-          [2, 7],
-        ])
-      )
-    )
-  ); */
 
   return (
     <MainContext.Provider

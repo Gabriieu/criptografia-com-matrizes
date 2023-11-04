@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { BottomSection, MainStyled, MiddleSection } from "./App";
 import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
@@ -20,11 +20,13 @@ function App() {
     decryptedWord,
   } = useContext(MainContext);
   const [decryptKey, setDecryptKey] = useState<number[][]>([[], []]);
+  const decryptValue = useRef<HTMLTextAreaElement | null>(null);
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
       cryptResult(transformMatrix(math.multiply(wordToMatrix(text), key)));
     }
+    
   };
 
   const handleDecrypt = (text: string) => {
@@ -123,7 +125,7 @@ function App() {
               </div>
             </section>
             <MiddleSection>
-              <h2>DESCRIPTOGRAFAR</h2>
+              <h2>DESCRIPTOGRAFIA</h2>
               <div id="key-inputs">
                 <h2
                   onClick={() =>
@@ -182,11 +184,12 @@ function App() {
                   />
                 </div>
               </div>
+                  <button id="decrypt-btn" onClick={() => handleDecrypt(decryptValue.current?.value!)}>Descriptografar</button>
               <div>
                 <textarea
                   className="text-area"
                   placeholder="Digite aqui..."
-                  onChange={(event) => handleDecrypt(event.target.value)}
+                  ref={decryptValue}
                 />
               </div>
               <div>
