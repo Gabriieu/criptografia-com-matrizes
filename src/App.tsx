@@ -17,7 +17,7 @@ function App() {
     finalWord,
     list,
     matrixToWord,
-    toReverseKey,decryptedWord
+    decryptedWord,
   } = useContext(MainContext);
   const [decryptKey, setDecryptKey] = useState<number[][]>([[], []]);
 
@@ -27,15 +27,15 @@ function App() {
     }
   };
 
-  const handleDecrypt = (text: string)=>{
-    if(decryptKey[0].length == 2 && decryptKey[1].length == 2){
-      matrixToWord(text, decryptKey)
+  const handleDecrypt = (text: string) => {
+    if (decryptKey[0].length == 2 && decryptKey[1].length == 2) {
+      matrixToWord(text, decryptKey);
     }
-  }
+  };
 
   useEffect(() => {
     setKey(generateKey());
-  }, [decryptedWord]);
+  }, []);
 
   return (
     <>
@@ -49,12 +49,14 @@ function App() {
                 <div>
                   <input
                     name="input"
+                    className="disabled-input"
                     disabled={true}
                     type="number"
                     value={key[0][0]}
                   />
                   <input
                     name="input"
+                    className="disabled-input"
                     disabled={true}
                     type="number"
                     value={key[0][1]}
@@ -63,12 +65,14 @@ function App() {
                 <div>
                   <input
                     name="input"
+                    className="disabled-input"
                     disabled={true}
                     type="number"
                     value={key[1][0]}
                   />
                   <input
                     name="input"
+                    className="disabled-input"
                     disabled={true}
                     type="number"
                     value={key[1][1]}
@@ -77,9 +81,8 @@ function App() {
               </div>
               <div className="input-word">
                 <h2>CRIPTOGRAFAR</h2>
-                <input
-                  name="input"
-                  type="text"
+                <textarea
+                  className="text-area"
                   onChange={(event) => handleInput(event.target.value)}
                   placeholder="Digite a palavra..."
                 />
@@ -105,7 +108,7 @@ function App() {
                 <h2>RESULTADO</h2>
                 {cryptedWord.length > 0 ? (
                   <textarea
-                    id="result"
+                    className="text-area"
                     readOnly={true}
                     value={finalWord}
                   ></textarea>
@@ -180,10 +183,18 @@ function App() {
                 </div>
               </div>
               <div>
-                <input type="text" placeholder="Digite aqui..." onChange={(event) => handleDecrypt(event.target.value)}/>
+                <textarea
+                  className="text-area"
+                  placeholder="Digite aqui..."
+                  onChange={(event) => handleDecrypt(event.target.value)}
+                />
               </div>
               <div>
-                <textarea value={decryptedWord} readOnly={true}></textarea>
+                <textarea
+                  className="text-area"
+                  value={decryptedWord}
+                  readOnly={true}
+                ></textarea>
               </div>
             </MiddleSection>
             <BottomSection>

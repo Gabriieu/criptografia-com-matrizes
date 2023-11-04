@@ -7,7 +7,20 @@ export const MainStyled = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    .text-area{
+        width: 428px;
+        max-width: 90vw;
+        border: 1px solid black;
+        resize: none;
+        height:300px;
+      }
 
+      .disabled-input{
+        &:hover {
+            cursor: not-allowed;
+          }
+      }
     h2 {
       padding: 0.5rem;
       font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -35,9 +48,7 @@ export const MainStyled = styled.main`
           border-radius: 8px;
           width: 20%;
           margin-bottom: 0.5rem;
-          &:hover {
-            cursor: not-allowed;
-          }
+          
         }
       }
     }
@@ -54,14 +65,7 @@ export const MainStyled = styled.main`
         padding: 8px;
       }
 
-      #result{
-        width: 428px;
-        max-width: 90vw;
-        min-height: 200px;
-        border: 1px solid black;
-        resize: none;
-        text-align: center;
-      }
+
     }
 
     #matrix-result {
