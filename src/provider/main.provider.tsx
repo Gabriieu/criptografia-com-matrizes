@@ -263,7 +263,9 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       setCryptedWord(result);
       transformText(result);
     }
-    result[result.length - 1].pop()
+    if(result[result.length - 1][1] == list[list.length - 1][0]){
+      console.log(result[result.length - 1][1], list[list.length - 1])
+    }
     return result;
   };
 

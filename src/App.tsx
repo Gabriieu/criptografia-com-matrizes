@@ -100,6 +100,7 @@ function App() {
               </div>
             <div className="container-inputs">
             <div className="input-word">
+              <h1>TEXTO</h1>
                 <textarea
                   className="text-area"
                   placeholder="Digite a palavra..."
@@ -111,6 +112,7 @@ function App() {
                   Criptografar
                 </button>
               <div className="input-word">
+              <h1>RESULTADO</h1>
                 {cryptedWord.length > 0 ? (
                   <textarea
                     className="text-area"
