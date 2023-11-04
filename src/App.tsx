@@ -4,8 +4,11 @@ import { MainContext } from "./provider/main.provider";
 import * as math from "mathjs";
 import { CaracterCard } from "./components/caracter-card/caracter-card.index";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import {TbReload} from "react-icons/tb"
+import "react-toastify/dist/ReactToastify.css";
+import { TbReload } from "react-icons/tb";
+import {AiFillEyeInvisible,AiFillEye} from "react-icons/ai"
+import { Footer } from "./components/footer/footer.index";
+import { Header } from "./components/header/header.index";
 
 function App() {
   const {
@@ -25,13 +28,14 @@ function App() {
   const [decryptKey, setDecryptKey] = useState<number[][]>([[], []]);
   const textValue = useRef<HTMLTextAreaElement | null>(null);
   const decryptValue = useRef<HTMLTextAreaElement | null>(null);
-  const keyMatrixReference = useRef<HTMLInputElement | null>(null)
+  const keyMatrixReference = useRef<HTMLInputElement | null>(null);
+  const [displayTable, setDisplayTable] = useState<boolean>(false);
 
   const handleInput = (text: string) => {
     if (text.length >= 4) {
       cryptResult(transformMatrix(math.multiply(wordToMatrix(text), key)));
-    }else{
-      toast.info("A palavra deve ter no mínimo 4 caracteres.")
+    } else {
+      toast.info("A palavra deve ter no mínimo 4 caracteres.");
     }
   };
 
@@ -42,16 +46,14 @@ function App() {
   };
 
   useEffect(() => {
-      setKey(generateKey())
+    setKey(generateKey());
   }, []);
-
-
 
   return (
     <>
       {key.length > 0 && (
         <>
-          <header></header>
+          <Header/>
           <MainStyled>
             <section>
               <h2 className="title">CRIPTOGRAFIA</h2>
@@ -90,10 +92,16 @@ function App() {
                     value={key[1][1]}
                   />
                 </div>
-                <TbReload onClick={() => setKey(generateKey())} color="blue" size={24}/>
+                <TbReload
+                  onClick={() => setKey(generateKey())}
+                  color="blue"
+                  size={24}
+                />
               </div>
               <div className="input-word">
-                <button onClick={() => handleInput(textValue.current?.value!)}>Criptografar</button>
+                <button onClick={() => handleInput(textValue.current?.value!)}>
+                  Criptografar
+                </button>
                 <textarea
                   className="text-area"
                   placeholder="Digite a palavra..."
@@ -205,26 +213,35 @@ function App() {
               </div>
             </MiddleSection>
             <BottomSection>
-              <h2>TABELA DE REFERÊNCIA</h2>
-              <ul>
-                {list.map((obj) => (
-                  <CaracterCard obj={obj} key={math.random()} />
-                ))}
-              </ul>
+              {displayTable ? (
+                <h2 className="show-hide" onClick={() => setDisplayTable(false)}>ESCONDER TABELA <AiFillEyeInvisible size={18}/></h2>
+              ) : (
+                <h2 className="show-hide" onClick={() => setDisplayTable(true)}>MOSTRAR TABELA <AiFillEye size={18}/></h2>
+              )}
+
+              {displayTable && (
+                <ul>
+                  {list.map((obj) => (
+                    <CaracterCard obj={obj} key={math.random()} />
+                  ))}
+                </ul>
+              )}
             </BottomSection>
           </MainStyled>
+          <Footer/>
         </>
-      )}<ToastContainer
-      position="top-right"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
+      )}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
       />
     </>
   );

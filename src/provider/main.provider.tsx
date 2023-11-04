@@ -181,7 +181,6 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
       [a, b],
       [c, d],
     ];
-    console.log(matrix)
     return matrix;
   };
 
