@@ -8,9 +8,11 @@ import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <ResetStyle />
-    <GlobalStyle/>
-    <BrowserRouter><MainProvider>
-      <App />
-    </MainProvider></BrowserRouter>
+    <GlobalStyle />
+    <BrowserRouter>
+      <MainProvider>
+        <App />
+      </MainProvider>
+    </BrowserRouter>
   </>
 );
