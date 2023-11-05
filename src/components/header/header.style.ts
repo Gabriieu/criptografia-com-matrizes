@@ -14,13 +14,13 @@ export const HeaderStyle = styled.header`
     height: 60px;
   }
 
+
   h2 {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
       sans-serif;
     font-size: 1.5rem;
     color: white;
   }
-
 
   #web-site-title {
     display: none;
@@ -43,19 +43,19 @@ export const MobileNavBar = styled.nav`
   color: white;
 
   ul {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      padding: 1rem;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
   li {
     color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
-    padding: .5rem;
+    padding: 0.5rem;
   }
-
 
   @media (min-width: 1024px) {
     display: none;
@@ -66,22 +66,33 @@ export const DesktopNavBar = styled.nav`
   display: none;
 
   ul {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-    }
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
   li {
+    position: relative;
     color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  &:hover{
-    cursor:pointer;
-    text-decoration: underline;
-    transform: scale(1.1);
-  }
-  }
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      top: 100%;
+      width: 100%;
+
+      height: 1px;  
+      background-color: #fff;
+      transition: 0.9s;
 
 
+    }
+  }
 
   @media (min-width: 1024px) {
     display: block;
   }
-`
+
+`;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainStyled = styled.main`
   padding: 1rem;
-
+  min-height: 100vh;
   button {
     background-color: rgba(1, 1, 1, 0.1);
     padding: 8px;
@@ -64,6 +64,9 @@ export const MainStyled = styled.main`
       display: flex;
       flex-direction: column;
       align-items: center;
+      border-radius: 20px;
+
+
 
       div {
         justify-content: center;

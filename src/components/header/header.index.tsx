@@ -17,7 +17,7 @@ export const Header = () => {
     <>
       <HeaderStyle>
         <div>
-          <img src={imagemMatriz} alt="logo" />
+          <img id = "imagemMatriz"src={imagemMatriz} alt="logo" />
         </div>
         <div id="web-site-title">
           <h2>PIZZO CALCULATOR</h2>
@@ -37,12 +37,12 @@ export const Header = () => {
             />
           )}
         </div>
-          <DesktopNavBar>
-            <ul>
-              <li onClick={() => handleNavigation("/")}>HOME</li>
-              <li onClick={() => handleNavigation("/about")}>ABOUT</li>
-            </ul>
-          </DesktopNavBar>
+        <DesktopNavBar>
+          <ul>
+            <li onClick={() => handleNavigation("/")}>HOME</li>
+            <li onClick={() => handleNavigation("/about")}>ABOUT</li>
+          </ul>
+        </DesktopNavBar>
       </HeaderStyle>
       {displayMenu && (
         <MobileNavBar id="nav-bar">

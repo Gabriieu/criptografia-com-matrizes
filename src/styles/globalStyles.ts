@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
     :root{
-        background-color: rgba(0, 0, 0, .15);
+        background-color: whitesmoke;
         color: black;
 
         textarea{
