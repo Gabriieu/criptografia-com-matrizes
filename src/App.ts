@@ -27,11 +27,11 @@ export const MainStyled = styled.main`
     flex-direction: column;
     align-items: center;
 
-    .container-inputs{
+    .container-inputs {
       display: flex;
       flex-direction: column;
       align-items: center;
-      @media(min-width: 1024px){
+      @media (min-width: 1024px) {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -133,8 +133,23 @@ export const MainStyled = styled.main`
     }
   }
 
-  .title{
+  .title {
     font-size: 24px;
+  }
+
+  svg {
+    &:hover {
+      cursor: pointer;
+      @keyframes girar360 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      animation: girar360 0.2s linear;
+    }
   }
 `;
 

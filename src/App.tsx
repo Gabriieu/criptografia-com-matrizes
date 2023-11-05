@@ -6,9 +6,10 @@ import { CaracterCard } from "./components/caracter-card/caracter-card.index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TbReload } from "react-icons/tb";
-import {AiFillEyeInvisible,AiFillEye} from "react-icons/ai"
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Footer } from "./components/footer/footer.index";
 import { Header } from "./components/header/header.index";
+import { FcKey } from "react-icons/fc";
 
 function App() {
   const {
@@ -53,7 +54,7 @@ function App() {
     <>
       {key.length > 0 && (
         <>
-          <Header/>
+          <Header />
           <MainStyled>
             <section>
               <h2 className="title">CRIPTOGRAFIA</h2>
@@ -98,56 +99,55 @@ function App() {
                   size={24}
                 />
               </div>
-            <div className="container-inputs">
-            <div className="input-word">
-              <h1>TEXTO</h1>
-                <textarea
-                  className="text-area"
-                  placeholder="Digite a palavra..."
-                  ref={textValue}
-                />
-              </div>
-              
-              <button onClick={() => handleInput(textValue.current?.value!)}>
+              <div className="container-inputs">
+                <div className="input-word">
+                  <h1>TEXTO</h1>
+                  <textarea
+                    className="text-area"
+                    placeholder="Digite a palavra..."
+                    ref={textValue}
+                  />
+                </div>
+
+                <button onClick={() => handleInput(textValue.current?.value!)}>
                   Criptografar
                 </button>
-              <div className="input-word">
-              <h1>RESULTADO</h1>
-                {cryptedWord.length > 0 ? (
-                  <textarea
-                    className="text-area"
-                    readOnly={true}
-                    value={finalWord}
-                  ></textarea>
-                ) : (
-                  <textarea
-                    className="text-area"
-                    readOnly={true}
-                    value="Aguardando..."
-                  ></textarea>
-                )}
+                <div className="input-word">
+                  <h1>RESULTADO</h1>
+                  {cryptedWord.length > 0 ? (
+                    <textarea
+                      className="text-area"
+                      readOnly={true}
+                      value={finalWord}
+                    ></textarea>
+                  ) : (
+                    <textarea
+                      className="text-area"
+                      readOnly={true}
+                      value="Aguardando..."
+                    ></textarea>
+                  )}
+                </div>
               </div>
-            </div>
-                  {
-                    wordMatrix.length > 0 && (              <div id="matrix-result">
-                    <h2>MATRIZ RESULTANTE</h2>
-                    <div>
-                      {wordMatrix.length > 0 &&
-                        wordMatrix.map((list) =>
-                          list.map((number) => (
-                            <input
-                              name="input"
-                              type="number"
-                              value={number}
-                              disabled={true}
-                              key={math.random()}
-                            />
-                          ))
-                        )}
-                    </div>
-                  </div>)
-                  }
-              
+              {wordMatrix.length > 0 && (
+                <div id="matrix-result">
+                  <h2>MATRIZ RESULTANTE</h2>
+                  <div>
+                    {wordMatrix.length > 0 &&
+                      wordMatrix.map((list) =>
+                        list.map((number) => (
+                          <input
+                            name="input"
+                            type="number"
+                            value={number}
+                            disabled={true}
+                            key={math.random()}
+                          />
+                        ))
+                      )}
+                  </div>
+                </div>
+              )}
             </section>
             <MiddleSection>
               <h2 className="title">DESCRIPTOGRAFIA</h2>
@@ -163,6 +163,7 @@ function App() {
                         [decryptKey[1][0], decryptKey[1][1]],
                       ])
                     }
+                    value={decryptKey[0][0]}
                   />
                   <input
                     name="input"
@@ -173,6 +174,7 @@ function App() {
                         [decryptKey[1][0], decryptKey[1][1]],
                       ])
                     }
+                    value={decryptKey[0][1]}
                   />
                 </div>
                 <div>
@@ -185,6 +187,7 @@ function App() {
                         [Number(event.target.value), decryptKey[1][1]],
                       ])
                     }
+                    value={decryptKey[1][0]}
                   />
                   <input
                     name="input"
@@ -195,37 +198,46 @@ function App() {
                         [decryptKey[1][0], Number(event.target.value)],
                       ])
                     }
+                    value={decryptKey[1][1]}
                   />
                 </div>
+                <FcKey onClick={() => setDecryptKey(key)} size={24} />
               </div>
-                    <div className="container-inputs">
-                    <div>
-                <textarea
-                  className="text-area"
-                  placeholder="Digite aqui..."
-                  ref={decryptValue}
-                />
+              <div className="container-inputs">
+                <div>
+                  <textarea
+                    className="text-area"
+                    placeholder="Digite aqui..."
+                    ref={decryptValue}
+                  />
+                </div>
+
+                <button
+                  onClick={() => handleDecrypt(decryptValue.current?.value!)}
+                >
+                  Descriptografar
+                </button>
+                <div>
+                  <textarea
+                    className="text-area"
+                    value={decryptedWord}
+                    readOnly={true}
+                  ></textarea>
+                </div>
               </div>
-              
-              <button
-                onClick={() => handleDecrypt(decryptValue.current?.value!)}
-              >
-                Descriptografar
-              </button>
-              <div>
-                <textarea
-                  className="text-area"
-                  value={decryptedWord}
-                  readOnly={true}
-                ></textarea>
-              </div>
-                    </div>
             </MiddleSection>
             <BottomSection>
               {displayTable ? (
-                <h2 className="show-hide" onClick={() => setDisplayTable(false)}>ESCONDER TABELA <AiFillEyeInvisible size={18}/></h2>
+                <h2
+                  className="show-hide"
+                  onClick={() => setDisplayTable(false)}
+                >
+                  ESCONDER TABELA <AiFillEyeInvisible size={18} />
+                </h2>
               ) : (
-                <h2 className="show-hide" onClick={() => setDisplayTable(true)}>MOSTRAR TABELA <AiFillEye size={18}/></h2>
+                <h2 className="show-hide" onClick={() => setDisplayTable(true)}>
+                  MOSTRAR TABELA <AiFillEye size={18} />
+                </h2>
               )}
 
               {displayTable && (
@@ -237,7 +249,7 @@ function App() {
               )}
             </BottomSection>
           </MainStyled>
-          <Footer/>
+          <Footer />
         </>
       )}
       <ToastContainer
