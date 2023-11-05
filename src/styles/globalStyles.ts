@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle`
         background-color: rgba(0, 0, 0, .15);
         color: black;
 
+        textarea{
+            border-radius: 8px;
+        }
+
 
         & ::-webkit-scrollbar{
             display: none;

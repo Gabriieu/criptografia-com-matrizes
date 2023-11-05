@@ -19,4 +19,14 @@ export const HeaderStyle = styled.header`
     font-size: 1.5rem;
     color: white;
   }
+
+  nav{
+    ul{
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  li{
+    color: white;
+  }
 `;
