@@ -1,5 +1,5 @@
 import { TechsStyle } from "./techs.style";
-import { SiReact, SiTypescript, SiStyledcomponents } from "react-icons/si";
+import { SiReact, SiTypescript } from "react-icons/si";
 import mathJSLogo from "../../assets/mathjs_330x100.png";
 
 export const TechsCard = () => {
