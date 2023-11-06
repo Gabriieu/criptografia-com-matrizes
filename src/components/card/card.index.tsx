@@ -4,19 +4,23 @@ import { CardStyle } from "./card.style";
 interface iUserCardProp {
   name: string;
   description: string;
-  linkedin: string;
-  github: string;
+  linkedin?: string;
+  github?: string;
+  role: string;
 }
+
 export const UserCard = ({
   name,
   description,
   github,
   linkedin,
+  role,
 }: iUserCardProp) => {
   return (
     <CardStyle>
       <div>
         <h6 id="user-name">{name}</h6>
+        <span>{role}</span>
         <p>{description}.</p>
         <div>
           <a href={github} target="_blank">

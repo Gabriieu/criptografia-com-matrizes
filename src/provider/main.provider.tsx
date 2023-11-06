@@ -156,6 +156,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { " ": 123 },
     { "–": 124 },
     { "\n": 125 },
+    {"	": 126}
   ];
 
   const transformText = (list: string[][]) => {

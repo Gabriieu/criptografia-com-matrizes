@@ -21,12 +21,14 @@ export const AboutPage = () => {
             <ul>
               <UserCard
                 name="José Gabriel"
+                role="Programador"
                 linkedin="https://www.linkedin.com/in/jos%C3%A9gabrielsouza/"
                 github="https://github.com/Gabriieu"
                 description="Me chamo José Gabriel, sou estudante de Engenharia de Computação na FESA (Faculdade Engenheiro Salvador Arena), sou formado em Desenvolvimento Web Full Stack, com conhecimentos técnicos em React + TypeScript para desenvolvimento de frontend e Node + Express para desenvolvimento de backend, além de outros conhecimentos complementares que me permitem atuar em diversos projetos"
               />
               <UserCard
                 name="Gustavo Laurindo"
+                role="UI/UX Designer"
                 linkedin="https://www.linkedin.com/in/gustavolaurindoss/"
                 github="https://github.com/lawrindovsk"
                 description="Me chamo Gustavo Laurindo dos Santos, tenho 18 anos, sou formado em Técnico em Informática, atualmente estou cursando Engenharia de Computação,
