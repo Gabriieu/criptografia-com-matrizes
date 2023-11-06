@@ -26,16 +26,16 @@ export const UserCard = ({
         <span className="role">{role}</span>
         <p>{description}.</p>
         <div>
-          <a href={github} target="_blank">
+          <a className="tech-redirect" href={github} target="_blank">
             <BsGithub size={36} color="white" />
           </a>
 
-          <a href={linkedin} target="_blank">
+          <a className="tech-redirect" href={linkedin} target="_blank">
             <BsLinkedin size={36} color="white" />
           </a>
           {portfolio && (
-            <a href={portfolio} target="_blank">
-              <MdCardTravel color="white" size={36}/>
+            <a className="tech-redirect" href={portfolio} target="_blank">
+              <MdCardTravel color="white" size={36} />
             </a>
           )}
         </div>

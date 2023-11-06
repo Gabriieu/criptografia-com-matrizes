@@ -9,8 +9,8 @@ export const CardStyle = styled.li`
   border-radius: 8px;
   margin-top: 1rem;
 
-  .role{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  .role {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     text-decoration: underline;
   }
 
@@ -24,7 +24,17 @@ export const CardStyle = styled.li`
   .user-name {
     font-size: 1.5rem;
   }
-
+  #tech-redirect {
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+  .tech-redirect > {
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+  
   > div > div {
     a {
       margin: 0 1rem 0 0;
