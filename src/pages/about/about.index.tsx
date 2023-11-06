@@ -24,7 +24,8 @@ export const AboutPage = () => {
                 role="Programador"
                 linkedin="https://www.linkedin.com/in/jos%C3%A9gabrielsouza/"
                 github="https://github.com/Gabriieu"
-                description="Me chamo José Gabriel, sou estudante de Engenharia de Computação na FESA (Faculdade Engenheiro Salvador Arena), sou formado em Desenvolvimento Web Full Stack, com conhecimentos técnicos em React + TypeScript para desenvolvimento de frontend e Node + Express para desenvolvimento de backend, além de outros conhecimentos complementares que me permitem atuar em diversos projetos"
+                description="Me chamo José Gabriel, sou estudante de Engenharia de Computação na FESA (Faculdade Engenheiro Salvador Arena), sou formado em Desenvolvimento Web Full Stack, com conhecimentos técnicos em HTML, CSS, JavaScript, TypeScript, React, Express, Python, Django, PostgreSQL, além de outros conhecimentos complementares que me permitem atuar em diversas etapas do desenvolvimento web. Além disso, tenho paixão pelo mundo da tecnologia e estou constantemente atualizando meus conhecimentos para acompanhar as últimas tendências e avanços na área de Tecnologia"
+                portfolio="https://jose-gabriel-portifolio.vercel.app/"
               />
               <UserCard
                 name="Gustavo Laurindo"

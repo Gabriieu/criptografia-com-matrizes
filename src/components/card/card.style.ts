@@ -9,6 +9,11 @@ export const CardStyle = styled.li`
   border-radius: 8px;
   margin-top: 1rem;
 
+  .role{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: underline;
+  }
+
   h6,
   p,
   a {
@@ -16,7 +21,7 @@ export const CardStyle = styled.li`
     text-align: justify;
   }
 
-  #user-name {
+  .user-name {
     font-size: 1.5rem;
   }
 
