@@ -85,7 +85,7 @@ export const DesktopNavBar = styled.nav`
 
       height: 1px;  
       background-color: #fff;
-      transition: 0.9s;
+      transition: 0.5s;
 
 
     }

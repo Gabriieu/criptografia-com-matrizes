@@ -4,10 +4,10 @@ import { MdCardTravel } from "react-icons/md";
 
 interface iUserCardProp {
   name: string;
+  role: string;
   description: string;
   linkedin?: string;
   github?: string;
-  role: string;
   portfolio?: string;
 }
 
@@ -26,13 +26,17 @@ export const UserCard = ({
         <span className="role">{role}</span>
         <p>{description}.</p>
         <div>
-          <a className="tech-redirect" href={github} target="_blank">
-            <BsGithub size={36} color="white" />
-          </a>
+          {github && (
+            <a className="tech-redirect" href={github} target="_blank">
+              <BsGithub size={36} color="white" />
+            </a>
+          )}
 
-          <a className="tech-redirect" href={linkedin} target="_blank">
-            <BsLinkedin size={36} color="white" />
-          </a>
+          {linkedin && (
+            <a className="tech-redirect" href={linkedin} target="_blank">
+              <BsLinkedin size={36} color="white" />
+            </a>
+          )}
           {portfolio && (
             <a className="tech-redirect" href={portfolio} target="_blank">
               <MdCardTravel color="white" size={36} />

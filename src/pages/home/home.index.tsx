@@ -38,8 +38,14 @@ export const HomePage = () => {
   };
 
   const handleDecrypt = (text: string) => {
+    if(decryptValue.current!.value.length < 4){
+      toast.error("Informe o texto para descriptografar")
+      return
+    }
     if (decryptKey[0].length == 2 && decryptKey[1].length == 2) {
       matrixToWord(text, decryptKey);
+    }else{
+      toast.error("Informe a chave de descriptografia")
     }
   };
 
@@ -196,7 +202,15 @@ export const HomePage = () => {
                     value={decryptKey[1][1]}
                   />
                 </div>
-                <FcKey onClick={() => setDecryptKey(key)} size={24} />
+                <div>
+                  <FcKey onClick={() => setDecryptKey(key)} size={24} />
+
+                  <TbReload
+                    onClick={() => setDecryptKey(generateKey())}
+                    color="blue"
+                    size={24}
+                  />
+                </div>
               </div>
               <div className="container-inputs">
                 <div>

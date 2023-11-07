@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import * as math from "mathjs";
+import { toast } from "react-toastify";
 
 interface iMainProviderProps {
   children: React.ReactNode;
@@ -156,7 +157,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     { " ": 123 },
     { "–": 124 },
     { "\n": 125 },
-    {"	": 126}
+    { "	": 126 },
   ];
 
   const transformText = (list: string[][]) => {
@@ -181,6 +182,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return matrix;
   };
 
+  //transforma os caracteres do input do usuário em matriz númerica
   const wordToMatrix = (word: string): number[][] => {
     const result: number[][] = [];
     for (const char of word) {
@@ -212,11 +214,11 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return newList;
   };
 
+  //aqui os números da matriz resultante são tratados para que não sejam superiores ao tamanho da lista
   const transformMatrix = (
     matrix: number[][],
     decrypting?: boolean
   ): number[][] => {
-    //aqui os números da matriz resultante são tratados para que não sejam superiores ao tamanho da lista
     const listSize = list.length;
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
@@ -236,6 +238,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return matrix;
   };
 
+  //função que obtém o resultado da criptografia
   const cryptResult = (
     matrix: number[][],
     decrypting?: boolean
@@ -264,6 +267,7 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return result;
   };
 
+  //reverte a chave para descriptografar
   const toReverseKey = (key: number[][]): number[][] => {
     const newKey: number[][] = [];
 
@@ -278,8 +282,10 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     return newKey;
   };
 
+  //essa função transforma a matriz da multiplica de descriptografia em letras, no caso a palavra descriptografada
   const matrixToWord = (text: string, key: number[][]) => {
-    let matrix: number[][] = [];
+    try {
+      let matrix: number[][] = [];
 
     const values = [];
 
@@ -318,6 +324,9 @@ export const MainProvider = ({ children }: iMainProviderProps) => {
     });
     setDecryptedWord(newString);
     return newString;
+    } catch (error) {
+      toast.error("Erro ao descriptografar")
+    }
   };
 
   return (
