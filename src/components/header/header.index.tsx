@@ -39,16 +39,16 @@ export const Header = () => {
         </div>
         <DesktopNavBar>
           <ul>
-            <li onClick={() => handleNavigation("/")}>HOME</li>
-            <li onClick={() => handleNavigation("/about")}>ABOUT</li>
+            <li onClick={() => handleNavigation("/")}>INÍCIO</li>
+            <li onClick={() => handleNavigation("/about")}>SOBRE</li>
           </ul>
         </DesktopNavBar>
       </HeaderStyle>
       {displayMenu && (
         <MobileNavBar id="nav-bar">
           <ul>
-            <li onClick={() => handleNavigation("/")}>HOME</li>
-            <li onClick={() => handleNavigation("/about")}>ABOUT</li>
+            <li onClick={() => handleNavigation("/")}>INÍCIO</li>
+            <li onClick={() => handleNavigation("/about")}>SOBRE</li>
           </ul>
         </MobileNavBar>
       )}

@@ -9,7 +9,6 @@ export const Footer = () => {
           criptografia da matéria 'Algebra Linear e Geometria Analítica'
           lecionada pelo Prof. Fernando Pizzo
         </h2>
-        <h2>Alunos: José Gabriel e Gustavo Laurindo</h2>
       </div>
     </FooterStyle>
   );
